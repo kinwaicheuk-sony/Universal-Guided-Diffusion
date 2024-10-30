@@ -206,7 +206,7 @@ class DDIMSamplerWithGrad(object):
 
                 with torch.no_grad():
                     # current prediction for x_0
-                    pred_x0 = (img - sqrt_one_minus_at * e_t) / a_t.sqrt()
+                    pred_x0 = (img - sqrt_one_minus_at * e_t) / a_t.sqrt() # eq (3)
 
                     # direction pointing to x_t
                     dir_xt = (1. - a_prev - sigma_t ** 2).sqrt() * e_t

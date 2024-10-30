@@ -458,9 +458,9 @@ def main():
                 max_vals, max_indices = torch.max(map, 1)
                 print(max_indices.shape)
                 map = max_indices
-
-                sep_map = F.one_hot(map, num_classes=num_class)
-                sep_map = sep_map.permute(0, 3, 1, 2).float()
+                # finding the most likely class
+                sep_map = F.one_hot(map, num_classes=num_class) # (B, H, W, num_class)
+                sep_map = sep_map.permute(0, 3, 1, 2).float() # (B, num_class, H, W)
                 print(sep_map.shape)
 
             label_save = decode_seg_map_sequence(torch.squeeze(map, 1).detach(
